@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.school.schoolweb.dao.RoastMapper" >
+
+    <resultMap id="BaseResultMap" type="com.school.schoolweb.bean.Roast" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="openid" property="openid" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="createtime" property="createtime" jdbcType="VARCHAR" />
+        <result column="backgroupcolor" property="backgroupcolor" jdbcType="INTEGER" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, openid, content, createtime, backgroupcolor,state
+    </sql>
+    
+    <!-- 查询所有 -->
+    <select id="findRoaseDatas" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from roast where state=1 ORDER BY createtime DESC limit #{pageStart},#{pageSize}
+    </select>
+    
+    <!-- 查询我的所有 -->
+    <select id="findRoaseMyDatas" resultMap="BaseResultMap"  >
+        select 
+        <include refid="Base_Column_List" />
+        from roast where openid=#{openid,jdbcType=VARCHAR} ORDER BY createtime DESC limit #{pageStart},#{pageSize}
+    </select>
+    
+    <!-- 根据主键查询 -->
+    <select id="findroastByRoastId" resultMap="BaseResultMap"  >
+        select 
+        <include refid="Base_Column_List" />
+        from roast where id=#{roastid,jdbcType=INTEGER}
+    </select>
+    
+    <delete id="deleteByRoastId" parameterType="java.lang.Integer" >
+        delete from roast where id = #{roastid,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.school.schoolweb.bean.Roast" >
+        insert into roast ( openid, content,backgroupcolor)
+        values (#{openid,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{backgroupcolor,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.school.schoolweb.bean.Roast" >
+        insert into roast
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="openid != null" >
+                openid,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="createtime != null" >
+                createtime,
+            </if>
+            <if test="backgroupcolor != null" >
+                backgroupcolor,
+            </if>
+            <if test="state != null" >
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="openid != null" >
+                #{openid,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null" >
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null" >
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="backgroupcolor != null" >
+                #{backgroupcolor,jdbcType=INTEGER},
+            </if>
+            <if test="state != null" >
+                #{state,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+</mapper>

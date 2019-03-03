@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.school.schoolweb.dao.UserCountMapper" >
+
+    <resultMap id="BaseResultMap" type="com.school.schoolweb.bean.UserCount" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="count" property="count" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, count
+    </sql>
+
+    <!-- 查询所有 -->
+    <select id="findbyId"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from usercount where id=1
+    </select>
+
+    <update id="updataUserCount" parameterType="java.lang.Integer">
+        update usercount set
+        count=#{count,jdbcType=INTEGER}
+    </update>
+
+</mapper>

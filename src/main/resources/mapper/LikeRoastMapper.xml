@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.school.schoolweb.dao.LikeRoastMapper" >
+
+    <resultMap id="BaseResultMap" type="com.school.schoolweb.bean.LikeRoast" >
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="roastid" property="roastid" jdbcType="INTEGER" />
+        <result column="openid" property="openid" jdbcType="VARCHAR" />
+        <result column="liked" property="liked" jdbcType="INTEGER" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, roastid, openid, liked
+    </sql>
+    
+     <!--总数  -->
+    <select id="roastLikeCount"  resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+        select count(1) from like_roast where roastid = #{roastid,jdbcType=INTEGER} and liked=1
+    </select>
+    
+    <!--是否点赞  -->
+    <select id="roastIsNotLiked" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from like_roast
+        where openid = #{openid,jdbcType=VARCHAR} and roastid=#{roastid,jdbcType=INTEGER} and liked= 1
+    </select>
+    
+    
+    <!--记录是否点过赞  -->
+    <select id="isHasRoastLikeData" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from like_roast
+        where roastid=#{roastId,jdbcType=INTEGER} and openid = #{openid,jdbcType=VARCHAR} 
+    </select>
+    
+
+    <insert id="insert" parameterType="com.school.schoolweb.bean.LikeRoast" >
+        insert into like_roast (roastid, openid, 
+            liked)
+        values ( #{roastid,jdbcType=INTEGER}, #{openid,jdbcType=VARCHAR}, 
+            #{liked,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.school.schoolweb.bean.LikeRoast" >
+        insert into like_roast
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="roastid != null" >
+                roastid,
+            </if>
+            <if test="openid != null" >
+                openid,
+            </if>
+            <if test="liked != null" >
+                liked,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="roastid != null" >
+                #{roastid,jdbcType=INTEGER},
+            </if>
+            <if test="openid != null" >
+                #{openid,jdbcType=VARCHAR},
+            </if>
+            <if test="liked != null" >
+                #{liked,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    
+     <!--更新点赞状态  -->
+    <update id="updataRoastLikeState" >
+        update like_roast set liked = #{state,jdbcType=INTEGER}
+        where roastid = #{roastId,jdbcType=INTEGER} and openid = #{openid,jdbcType=VARCHAR}
+    </update>
+    
+</mapper>
