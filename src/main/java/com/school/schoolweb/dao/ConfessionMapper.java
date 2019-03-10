@@ -20,7 +20,8 @@ public interface ConfessionMapper {
 
     int updateByPrimaryKey(Confession record);
 
-	List<Confession> findAllConfession(@Param(value = "pageStart") int pageStart, @Param(value = "pageSize") int pageSize);
+	List<Confession> findAllConfess();
 
-	List<Confession> findschoolConfessionOfMyLove(@Param(value = "pageStart") int pageStart, @Param(value = "pageSize") int pageSize, @Param(value = "openid") String openid);
+	int countItem();
+
 }
