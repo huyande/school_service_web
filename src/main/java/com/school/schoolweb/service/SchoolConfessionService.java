@@ -21,6 +21,21 @@ public interface SchoolConfessionService {
 	 * 更具id删除表白信息
 	 */
 	int deleteConfessionById(String confid);
+	/**
+	 * 统计表白信息总数和新增数 
+	 * @return
+	 */
+	String statisticalConfCountAndNewCount();
+	/**
+	 * 统计表白信息中性别比例
+	 * @return
+	 */
+	String statisticalConfCountSex();
+	/**
+	 * 统计表白信息匿名实名比例 
+	 * @return
+	 */
+	String statisticalConfCountStateIncognito();
 
 	
 }

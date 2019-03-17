@@ -160,3 +160,52 @@
     		"image": "http://zwxq.qiqibl.com/tmp/wxd850d0c58c0ae310.o6zAJszu-hBaGQ3Ucg1iRCuUIyN4.XbBwm5EmtGgW9e8582d684d358eb47207440dc979e1c.jpg"
     	}]
     }
+
+
+### 2、表白信息统计  获取到总数 和新增数   ###
+
+> GET :http://localhost:84/confession/confCountinfo
+
+参数：无
+
+返回值
+
+    {
+	    "data": {
+	        "currentCount": 11,
+	        "increaseCount": 1
+	    }
+	}
+
+
+### 3、统计表白信息性别数   ###
+
+> GET:http://localhost:84/confession/confCountSex
+
+
+参数：无
+
+返回值：
+
+    {
+	    "data": {
+	        "woman": 1,
+	        "man": 1
+	    }
+	}
+
+
+### 4、统计表白信息匿名实名数 ###
+
+> GET：http://localhost:84/confession/confCountStateIncognito
+
+参数 ：无
+
+返回值
+
+    {
+	    "data": {
+	        "realName": 10,
+	        "incognito": 1
+	    }
+	}

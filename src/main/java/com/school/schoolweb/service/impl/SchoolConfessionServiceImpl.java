@@ -1,23 +1,32 @@
 package com.school.schoolweb.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.school.schoolweb.bean.Wxuserinfo;
 import com.school.schoolweb.bean.ana.ScConfessionJson;
 import com.school.schoolweb.bean.ana.User;
+import com.school.schoolweb.bean.otherbean.IncognitoCount;
+import com.school.schoolweb.bean.otherbean.SexCount;
 import com.school.schoolweb.dao.LikedMapper;
 import com.school.schoolweb.dao.WxuserinfoMapper;
 import com.school.schoolweb.utils.DateUtil;
+import com.school.schoolweb.utils.JacksonUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.school.schoolweb.bean.Confession;
+import com.school.schoolweb.bean.CountInfo;
 import com.school.schoolweb.bean.SchoolImage;
 import com.school.schoolweb.dao.ConfessionMapper;
+import com.school.schoolweb.dao.CountInfoMapper;
 import com.school.schoolweb.service.SchoolConfessionService;
 
 @Service
@@ -31,6 +40,9 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
 
 	@Autowired
 	private LikedMapper likedMapper;
+	
+	@Autowired
+	private CountInfoMapper countInfoMapper;
 
 	//图片地址前缀
 	@Value("${qiniu.imageAddress}")
@@ -85,6 +97,54 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
 		pageInfo.setList(scConfessionJsons);
 		pageInfo.setTotal(count);
 		return pageInfo;
+	}
+
+	@Override
+	public String statisticalConfCountAndNewCount() {
+		int countItem = confessionMapper.countItem();
+		//2 代表 conf 那列 
+		CountInfo countInfo = countInfoMapper.findbyId(2);
+		int increaseCount=countItem-countInfo.getCount();
+		JSONObject jsonObject = new JSONObject();
+		Map<String,Integer> map = new HashMap<>();
+		map.put("currentCount", countItem);
+		map.put("increaseCount", increaseCount);
+        jsonObject.put("data",map);
+		return JacksonUtil.toJSon(jsonObject);
+	}
+
+	@Override
+	public String statisticalConfCountSex() {
+		 List<SexCount> sexCounts = confessionMapper.statisticalConfCountSex();
+		 Map<String,Integer> map = new HashMap<>();
+	        for(SexCount sex:sexCounts){
+	            if(sex.getSextype()==0){
+	                map.put("UNKnow",sex.getSexcount());
+	            }else if(sex.getSextype()==1){
+	                map.put("man",sex.getSexcount());
+	            }else{
+	                map.put("woman",sex.getSexcount());
+	            }
+	        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",map);
+        return JacksonUtil.toJSon(jsonObject);
+	}
+
+	@Override
+	public String statisticalConfCountStateIncognito() {
+		List<IncognitoCount> incognitoList = confessionMapper.statisticalConfCountStateIncognito();
+		Map<String,Integer> map = new HashMap<>();
+		for(IncognitoCount inc :incognitoList){
+			if(inc.getIncognito()==0){//表示是匿名
+				map.put("incognito", inc.getCount());
+			}else{
+				map.put("realName", inc.getCount());
+			}
+		}
+		JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",map);
+        return JacksonUtil.toJSon(jsonObject);
 	}
 
 }

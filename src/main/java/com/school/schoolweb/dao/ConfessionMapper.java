@@ -2,10 +2,9 @@ package com.school.schoolweb.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.school.schoolweb.bean.Confession;
-import com.school.schoolweb.bean.SchoolImage;
+import com.school.schoolweb.bean.otherbean.IncognitoCount;
+import com.school.schoolweb.bean.otherbean.SexCount;
 
 public interface ConfessionMapper {
     int deleteByPrimaryKey(String id);
@@ -23,5 +22,9 @@ public interface ConfessionMapper {
 	List<Confession> findAllConfess();
 
 	int countItem();
+	//统计男女表白信息比例 
+	List<SexCount> statisticalConfCountSex();
+	//统计发信息 的实名匿名比例
+	List<IncognitoCount> statisticalConfCountStateIncognito();
 
 }

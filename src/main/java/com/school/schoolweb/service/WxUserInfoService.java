@@ -1,7 +1,7 @@
 package com.school.schoolweb.service;
 
 import com.github.pagehelper.PageInfo;
-import com.school.schoolweb.bean.UserCount;
+import com.school.schoolweb.bean.CountInfo;
 import com.school.schoolweb.bean.Wxuserinfo;
 import com.school.schoolweb.bean.otherbean.SexCount;
 
@@ -17,7 +17,7 @@ public interface WxUserInfoService {
 
 	int getUserCount();
 
-	UserCount getUserDayCount();
+	CountInfo getUserDayCount();
 
 	List<SexCount> sexcount();
 }

@@ -2,7 +2,7 @@ package com.school.schoolweb.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.school.schoolweb.bean.UserCount;
+import com.school.schoolweb.bean.CountInfo;
 import com.school.schoolweb.bean.Wxuserinfo;
 import com.school.schoolweb.bean.otherbean.SexCount;
 import com.school.schoolweb.service.WxUserInfoService;
@@ -56,7 +56,7 @@ public class UserManagerController {
     @GetMapping("usercont")
     public String usercont(){
         int  count = wxUserInfoService.getUserCount();
-        UserCount dayCount = wxUserInfoService.getUserDayCount();
+        CountInfo dayCount = wxUserInfoService.getUserDayCount();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("currentCount",count);
         jsonObject.put("increaseCount",count-dayCount.getCount());

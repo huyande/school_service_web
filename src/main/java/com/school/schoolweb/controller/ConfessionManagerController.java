@@ -27,4 +27,38 @@ public class ConfessionManagerController {
         jsonObject.put("data",pageInfo.getList());
         return JacksonUtil.toJSon(jsonObject);
     }
+    
+    /**
+     * 表白信息统计  获取到总数 和新增数  
+     */
+    @GetMapping("confCountinfo")
+    public String confCountinfo(){
+    	String info = schoolConfessionService.statisticalConfCountAndNewCount();
+    	return info;
+    }
+    
+    /**
+     * 统计表白信息性别数  
+     */
+    @GetMapping("confCountSex")
+    public String confCountSex(){
+    	String info = schoolConfessionService.statisticalConfCountSex();
+    	return info;
+    }
+    
+    /**
+     * 统计表白信息匿名实名情况
+     */
+    @GetMapping("confCountStateIncognito")
+    public String confCountStateIncognito(){
+    	String info = schoolConfessionService.statisticalConfCountStateIncognito();
+    	return info;
+    }
+    
+    
+    
+    
+    /**
+     * 统计分享数  暂定
+     */
 }

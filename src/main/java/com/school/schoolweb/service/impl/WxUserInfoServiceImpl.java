@@ -2,9 +2,9 @@ package com.school.schoolweb.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.school.schoolweb.bean.UserCount;
+import com.school.schoolweb.bean.CountInfo;
 import com.school.schoolweb.bean.otherbean.SexCount;
-import com.school.schoolweb.dao.UserCountMapper;
+import com.school.schoolweb.dao.CountInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +21,7 @@ public class WxUserInfoServiceImpl implements WxUserInfoService {
 	private WxuserinfoMapper wxuserinfoMapper;
 
 	@Autowired
-	private UserCountMapper userCountMapper;
+	private CountInfoMapper userCountMapper;
 
 	@Override
 	public Wxuserinfo findByOpenId(String openid) {
@@ -59,8 +59,9 @@ public class WxUserInfoServiceImpl implements WxUserInfoService {
 	}
 
 	@Override
-	public UserCount getUserDayCount() {
-		return userCountMapper.findbyId();
+	public CountInfo getUserDayCount() {
+		//数据库中 第一列保存用户总数 
+		return userCountMapper.findbyId(1);
 	}
 
 	@Override

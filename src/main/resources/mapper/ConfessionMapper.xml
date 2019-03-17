@@ -34,7 +34,22 @@
 
     <!-- 查询总数 -->
     <select id="countItem" resultType="java.lang.Integer"  >
-        select count(1) from confession
+        select count(1) from confession 
+    </select>
+    
+    <!-- 统计男女信息比例 -->
+    <select id="statisticalConfCountSex" resultType="com.school.schoolweb.bean.otherbean.SexCount"  >
+       SELECT tt.`gender` sextype,  COUNT(1) sexcount FROM (
+			SELECT wx.openid,wx.`gender` FROM confession c
+			LEFT JOIN wxuserinfo wx ON wx.`openid`=c.`openid` 
+			GROUP BY wx.`openid` ,wx.`gender`
+		)tt
+		GROUP BY tt.`gender`
+    </select>
+    
+    <!-- 统计男女信息比例 -->
+    <select id="statisticalConfCountStateIncognito" resultType="com.school.schoolweb.bean.otherbean.IncognitoCount"  >
+		SELECT stateniming incognito,COUNT(1) count FROM confession GROUP BY stateniming 
     </select>
     
 
