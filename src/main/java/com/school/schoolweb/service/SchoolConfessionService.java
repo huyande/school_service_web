@@ -36,6 +36,14 @@ public interface SchoolConfessionService {
 	 * @return
 	 */
 	String statisticalConfCountStateIncognito();
+	
+	/**
+	 * 根据某列排序 查询前itemCount 条
+	 * @param itemCount
+	 * @param orderBy
+	 * @return
+	 */
+	List<ScConfessionJson> findConfessionsOrderByItem(int itemCount);
 
 	
 }

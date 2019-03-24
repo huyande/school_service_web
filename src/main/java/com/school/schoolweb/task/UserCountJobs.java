@@ -19,5 +19,6 @@ public class UserCountJobs {
         System.err.println("定时任务");
         userCountService.updataCountInfo("wxuser");
         userCountService.updataCountInfo("conf");
+        userCountService.updataCountInfo("roast");
     }
 }

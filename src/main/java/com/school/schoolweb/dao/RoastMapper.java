@@ -18,4 +18,8 @@ public interface RoastMapper {
 	List<Roast> findRoaseMyDatas(String openid, @Param(value = "pageStart") int pageStart, @Param(value = "pageSize") int pageSize);
 
 	Roast findroastByRoastId(@Param(value = "roastid") int roastid);
+
+	int countItem();
+
+	List<Roast> findConfessionsOrderByItem(int itemCount);
 }

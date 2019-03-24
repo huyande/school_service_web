@@ -12,6 +12,7 @@
         <result column="touser" property="touser" jdbcType="VARCHAR" />
         <result column="fromuser" property="fromuser" jdbcType="VARCHAR" />
         <result column="openid" property="openid" jdbcType="VARCHAR" />
+        <result column="numCount" property="numCount" jdbcType="INTEGER" />
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -50,6 +51,16 @@
     <!-- 统计男女信息比例 -->
     <select id="statisticalConfCountStateIncognito" resultType="com.school.schoolweb.bean.otherbean.IncognitoCount"  >
 		SELECT stateniming incognito,COUNT(1) count FROM confession GROUP BY stateniming 
+    </select>
+    
+    <select id="findConfessionsOrderByItem" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		SELECT c.*,ld.numCount
+		FROM confession c,
+		 (
+			SELECT confid,liked ,COUNT(1) numCount FROM liked 
+			GROUP BY confid,liked ORDER BY COUNT(1) DESC LIMIT 0,#{itemCount,jdbcType=INTEGER}
+		)ld
+		WHERE c.`id`=ld.`confid` AND ld.`liked`=1
     </select>
     
 

@@ -2,6 +2,7 @@ package com.school.schoolweb.service.impl;
 
 import com.school.schoolweb.dao.ConfessionMapper;
 import com.school.schoolweb.dao.CountInfoMapper;
+import com.school.schoolweb.dao.RoastMapper;
 import com.school.schoolweb.dao.WxuserinfoMapper;
 import com.school.schoolweb.service.CountInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class CountInfoServiceImpl implements CountInfoService{
     
     @Autowired
     private ConfessionMapper confessionMapper;
+    
+    @Autowired
+    private RoastMapper roastMapper;
 
     /**
      * 进行更新操作
@@ -27,6 +31,8 @@ public class CountInfoServiceImpl implements CountInfoService{
     		userCountMapper.updataCountInfo(wxuserinfoMapper.getUserCount(),type);
     	}else if(type.equals("conf")){
     		userCountMapper.updataCountInfo(confessionMapper.countItem(),type);
+    	}else if(type.equals("roast")){
+    		userCountMapper.updataCountInfo(roastMapper.countItem(),type);
     	}
     }
 }

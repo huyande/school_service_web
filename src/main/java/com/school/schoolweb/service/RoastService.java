@@ -3,6 +3,7 @@ package com.school.schoolweb.service;
 import java.util.List;
 
 import com.school.schoolweb.bean.Roast;
+import com.school.schoolweb.bean.ana.RoastJSON;
 
 /**
  * 吐槽 service
@@ -32,5 +33,17 @@ public interface RoastService {
 	List<Roast> findRoaseMyDatas(String openid, Integer page, Integer pagesize);
 
 	Roast findroastByRoastId(int roastid);
+	
+	/**
+	 * 吐槽新增和总数
+	 * @return
+	 */
+	String roastCountInfo();
 
+	/**
+	 * 查询点赞前多少条的吐槽信息
+	 * @param itemCount
+	 * @return
+	 */
+	List<RoastJSON> findConfessionsOrderByItem(int itemCount);
 }

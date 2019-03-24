@@ -9,6 +9,7 @@
         <result column="createtime" property="createtime" jdbcType="VARCHAR" />
         <result column="backgroupcolor" property="backgroupcolor" jdbcType="INTEGER" />
         <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="numCount" property="numCount" jdbcType="INTEGER" />
     </resultMap>
     
     <sql id="Base_Column_List" >
@@ -29,11 +30,26 @@
         from roast where openid=#{openid,jdbcType=VARCHAR} ORDER BY createtime DESC limit #{pageStart},#{pageSize}
     </select>
     
+    <!-- 查询我的所有 -->
+    <select id="countItem" resultType="java.lang.Integer" >
+        select count(1) from roast 
+    </select>
+    
     <!-- 根据主键查询 -->
     <select id="findroastByRoastId" resultMap="BaseResultMap"  >
         select 
         <include refid="Base_Column_List" />
         from roast where id=#{roastid,jdbcType=INTEGER}
+    </select>
+    
+    <select id="findConfessionsOrderByItem" resultMap="BaseResultMap">
+        SELECT r.*,ld.numCount
+		FROM roast r,
+		 (
+			SELECT roastid ,liked,COUNT(1) numCount FROM like_roast 
+			GROUP BY roastid,liked ORDER BY COUNT(1) DESC LIMIT 0,#{itemCount,jdbcType=INTEGER}
+		)ld
+		WHERE r.`id`=ld.`roastid` AND ld.`liked`=1
     </select>
     
     <delete id="deleteByRoastId" parameterType="java.lang.Integer" >

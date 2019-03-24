@@ -27,6 +27,8 @@ public class Roast {
      * 1 通过显示 、2 不显示
      */
     private Integer state;
+    
+    private Integer numCount;
 
     public Integer getId() {
         return id;
@@ -74,4 +76,12 @@ public class Roast {
     public void setState(Integer state) {
         this.state = state;
     }
+
+	public Integer getNumCount() {
+		return numCount;
+	}
+
+	public void setNumCount(Integer numCount) {
+		this.numCount = numCount;
+	}
 }

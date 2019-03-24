@@ -22,6 +22,9 @@ public class Confession {
     
     private String touser;
     private String fromuser;
+    
+    //统计前十点赞量 需要的参数
+    private int numCount;
 
     public String getId() {
         return id;
@@ -94,5 +97,13 @@ public class Confession {
 
 	public void setFromuser(String fromuser) {
 		this.fromuser = fromuser;
+	}
+
+	public int getNumCount() {
+		return numCount;
+	}
+
+	public void setNumCount(int numCount) {
+		this.numCount = numCount;
 	}
 }

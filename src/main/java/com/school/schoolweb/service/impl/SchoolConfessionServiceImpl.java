@@ -147,4 +147,42 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
         return JacksonUtil.toJSon(jsonObject);
 	}
 
+	@Override
+	public List<ScConfessionJson> findConfessionsOrderByItem(int itemCount) {
+		List<Confession> confessionList = confessionMapper.findConfessionsOrderByItem(itemCount);
+		List<ScConfessionJson> scConfessionJsons = new ArrayList<>();
+		for (Confession conf:confessionList) {
+			ScConfessionJson scConfessionJson = new ScConfessionJson();
+			Wxuserinfo wxuserinfo = wxuserinfoMapper.findByOpenId(conf.getOpenid());
+
+			User user = new User();
+			user.setAvatar(wxuserinfo.getAvatarurl());
+			user.setSex(wxuserinfo.getGender());
+			user.setTouser(conf.getTouser());
+			user.setFromuser(wxuserinfo.getNickname());
+			//发布信息用户的id
+			user.setUserId(wxuserinfo.getOpenid());
+			//设置用户
+			scConfessionJson.setUser(user);
+
+			scConfessionJson.setId(conf.getId());
+			scConfessionJson.setContent(conf.getContent());
+			//是否是匿名
+			scConfessionJson.setStateNiming(conf.getStateniming());
+			//点赞的数量
+			scConfessionJson.setLikedCount(likedMapper.likedCount(conf.getId()));
+			//设置时间
+			//scConfessionJson.setTime(Integer.parseInt(DataTimeUtils.date2TimeStamp(conf.getTime().toString(), "yyyy-MM-dd HH:mm:ss")));
+			scConfessionJson.setTime(DateUtil.format(DateUtil.convertStrToDate(conf.getTime()),"yyyy/MM/dd"));
+			//遍历图片数组
+			scConfessionJson.setImage(imageAddress+conf.getImage());
+			scConfessionJson.setNumCount(conf.getNumCount());
+			scConfessionJsons.add(scConfessionJson);
+		}
+		
+		
+		
+		return scConfessionJsons;
+	}
+
 }

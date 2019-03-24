@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("admin/user")
 public class UserManagerController {
 
     @Autowired

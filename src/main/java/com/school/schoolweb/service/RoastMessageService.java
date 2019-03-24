@@ -3,6 +3,7 @@ package com.school.schoolweb.service;
 import java.util.List;
 
 import com.school.schoolweb.bean.MessageRoast;
+import com.school.schoolweb.bean.ana.RoastJSON;
 
 /**
 * @Description: 
@@ -16,5 +17,5 @@ public interface RoastMessageService {
 	int countByRoastId(Integer roastId);
 
 	int addMessage(MessageRoast messageRoast);
-
+	
 }

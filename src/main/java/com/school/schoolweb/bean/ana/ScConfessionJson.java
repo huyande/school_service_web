@@ -27,6 +27,9 @@ public class ScConfessionJson {
 
 	// 图片列表
 	private String image;
+	
+	//统计的数量
+	private int numCount;
 
 	public String getId() {
 		return id;
@@ -81,5 +84,12 @@ public class ScConfessionJson {
 	public void setStateNiming(Integer stateNiming) {
 		this.stateNiming = stateNiming;
 	}
-	
+
+	public int getNumCount() {
+		return numCount;
+	}
+
+	public void setNumCount(int numCount) {
+		this.numCount = numCount;
+	}
 }
