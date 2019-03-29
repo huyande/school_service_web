@@ -7,21 +7,41 @@ import com.school.schoolweb.bean.Wxuserinfo;
 import com.school.schoolweb.bean.otherbean.SexCount;
 import com.school.schoolweb.service.WxUserInfoService;
 import com.school.schoolweb.utils.JacksonUtil;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("admin/user")
 public class UserManagerController {
 
+	Logger log = LoggerFactory.getLogger(UserManagerController.class);
+	
+	
     @Autowired
     private WxUserInfoService wxUserInfoService;
+    
+    
+    @GetMapping("userManager")
+    public String userManager(Model model) {
+    	 int  count = wxUserInfoService.getUserCount();
+         CountInfo dayCount = wxUserInfoService.getUserDayCount();
+         model.addAttribute("currentCount",count);
+         model.addAttribute("increaseCount",count-dayCount.getCount());
+         return "admin/usermanager";
+    }
+    
 
     /**
      * 获取用户列表
@@ -30,9 +50,11 @@ public class UserManagerController {
      * @return
      */
     @GetMapping("userlist")
-    public String userlist(Integer currentpage,Integer pagesize){
+    @ResponseBody
+    public String userlist(Integer currentpage,Integer pagesize,String search){
         //PageInfo<Wxuserinfo> pageInfo = new PageInfo<>();
-        PageInfo<Wxuserinfo> pageInfo = wxUserInfoService.findAllWxUser(currentpage,pagesize);
+    	log.info("获取用户列表");
+    	PageInfo<Wxuserinfo> pageInfo = wxUserInfoService.findAllWxUser(currentpage,pagesize,search);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("total",pageInfo.getTotal());
         jsonObject.put("data",pageInfo.getList());
@@ -43,6 +65,7 @@ public class UserManagerController {
      * 查看用户详情
      */
     @GetMapping("userinfo")
+    @ResponseBody
     public String userinfo(String openid){
         Wxuserinfo wxuserinfo = wxUserInfoService.findByOpenId(openid);
         JSONObject jsonObject = new JSONObject();
@@ -54,6 +77,7 @@ public class UserManagerController {
      * 获取用户总数 用户日增量
      */
     @GetMapping("usercont")
+    @ResponseBody
     public String usercont(){
         int  count = wxUserInfoService.getUserCount();
         CountInfo dayCount = wxUserInfoService.getUserDayCount();
@@ -64,9 +88,15 @@ public class UserManagerController {
     }
 
     @GetMapping("sexcount")
+    @ResponseBody
     public String sexcount(){
+    	log.info("性别数量比");
         List<SexCount> sexCounts = wxUserInfoService.sexcount();
         Map<String,Integer> map = new HashMap<>();
+        //赋初始值
+        map.put("UNKnow",0);
+        map.put("man",0);
+        map.put("woman",0);
         for(SexCount sex:sexCounts){
             if(sex.getSextype()==0){
                 map.put("UNKnow",sex.getSexcount());

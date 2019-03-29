@@ -5,6 +5,8 @@ import com.school.schoolweb.bean.otherbean.SexCount;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface WxuserinfoMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -20,9 +22,11 @@ public interface WxuserinfoMapper {
 
 	Wxuserinfo findByOpenId(String openid);
 
-	List<Wxuserinfo> findAllWxUser();
+	List<Wxuserinfo> findAllWxUser(@Param(value="search") String search);
 
 	int getUserCount();
 
     List<SexCount> sexcount();
+
+	int getUserCountSearch(@Param(value="search") String search);
 }

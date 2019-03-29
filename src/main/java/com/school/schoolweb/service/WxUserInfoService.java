@@ -13,7 +13,7 @@ public interface WxUserInfoService {
 
 	int addWxUserInfo(Wxuserinfo wxuserinfo);
 
-	PageInfo<Wxuserinfo> findAllWxUser(Integer currentpage, Integer pagesize);
+	PageInfo<Wxuserinfo> findAllWxUser(Integer currentpage, Integer pagesize,String search);
 
 	int getUserCount();
 

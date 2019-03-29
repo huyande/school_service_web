@@ -41,12 +41,12 @@ public class WxUserInfoServiceImpl implements WxUserInfoService {
 	 * @return
 	 */
 	@Override
-	public PageInfo<Wxuserinfo> findAllWxUser(Integer currentpage, Integer pagesize) {
+	public PageInfo<Wxuserinfo> findAllWxUser(Integer currentpage, Integer pagesize,String search) {
 		int page = currentpage==null?1:currentpage;
 		int pageSize = pagesize==null?10:pagesize;
 		PageHelper.startPage(page,pageSize);
-		List<Wxuserinfo> wxuserinfos = wxuserinfoMapper.findAllWxUser();
-		int total  = wxuserinfoMapper.getUserCount();
+		List<Wxuserinfo> wxuserinfos = wxuserinfoMapper.findAllWxUser(search);
+		int total  = wxuserinfoMapper.getUserCountSearch(search);
 		PageInfo<Wxuserinfo> pageInfo = new PageInfo<>();
 		pageInfo.setList(wxuserinfos);
 		pageInfo.setTotal(total);
