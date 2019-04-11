@@ -55,9 +55,6 @@ public class ConfessionManagerController {
     	return info;
     }
     
-    
-    
-    
     /**
      * 统计分享数  暂定
      */

@@ -104,7 +104,7 @@ $.ajax({
 	type:'get',
 	dataType: "json",
 	success:function(data){
-		countUp2(data.data.currentCount);
+		countUp2(data.data.increaseCount);
 	}
 });
 
@@ -114,7 +114,7 @@ $.ajax({
 	type:'get',
 	dataType: "json",
 	success:function(data){
-		countUp3(data.data.currentCount);
+		countUp3(data.data.increaseCount);
 	}
 });
 
