@@ -42,6 +42,28 @@ public class UserManagerController {
          return "admin/usermanager";
     }
     
+    
+    /** 
+     * 测试
+    * @author hyd
+    * @Description: 
+    * @date 2019年4月11日 上午10:22:08
+    * @return
+     */
+    
+    @GetMapping("template")
+    public String template() {
+    	return "frameIndex";
+    }
+    
+    @GetMapping("userm")
+    public String userm() {
+    	return "userm";
+    }
+    
+    
+    
+    
 
     /**
      * 获取用户列表
