@@ -9,32 +9,24 @@
 <meta name="keyword" content="">
 <link rel="shortcut icon" href="${ctx}/img/favicon.png">
 <title>校园墙服务后台</title>
-<!-- Bootstrap core CSS -->
 <link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${ctx}/css/bootstrap-reset.css" rel="stylesheet">
-<!--external css-->
-<link href="${ctx}/assets/font-awesome/css/font-awesome.css"
-	rel="stylesheet" />
-<link
-	href="${ctx}/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css"
-	rel="stylesheet" type="text/css" media="screen" />
-<link rel="stylesheet" href="${ctx}/css/owl.carousel.css"
-	type="text/css">
-<!--right slidebar-->
+<link href="${ctx}/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="${ctx}/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" href="${ctx}/css/owl.carousel.css" type="text/css">
 <link href="${ctx}/css/slidebars.css" rel="stylesheet">
-<!-- Custom styles for this template -->
 <link href="${ctx}/css/style.css" rel="stylesheet">
 <link href="${ctx}/css/style-responsive.css" rel="stylesheet" />
 </head>
 <body>
 	<section id="container">
 		<!--header start-->
-		<#include "header.ftl"/>
+		<#include "./common/header.ftl"/>
 
-		<#include "menu.ftl"/>
+		<#include "./common/menu.ftl"/>
 
 		<div id="content">
-			<iframe align="center" style="padding: 0px; width: 100%; height: 800px;" src="/admin/user/userm" frameborder="no"></iframe>				
+			<iframe align="center" style="padding: 0px; width: 100%; height: 800px;" src="/admin/user/userManager" frameborder="no"></iframe>				
 		</div>
 		<!--footer start-->
 		<#include "footer.ftl"/>

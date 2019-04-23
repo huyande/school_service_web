@@ -9,7 +9,7 @@ import com.school.schoolweb.bean.ana.ScConfessionJson;
 
 public interface SchoolConfessionService {
 
-	PageInfo<ScConfessionJson> findAllConfess(Integer currentpage, Integer pagesize);
+	PageInfo<ScConfessionJson> findAllConfess(Integer currentpage, Integer pagesize,String search);
 
 	/**
 	 * 根据文章id 查询此信息

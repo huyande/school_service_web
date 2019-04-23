@@ -21,7 +21,7 @@ public interface ConfessionMapper {
 
     int updateByPrimaryKey(Confession record);
 
-	List<Confession> findAllConfess();
+	List<Confession> findAllConfess(@Param(value="search")  String search);
 
 	int countItem();
 	//统计男女表白信息比例 
@@ -30,5 +30,8 @@ public interface ConfessionMapper {
 	List<IncognitoCount> statisticalConfCountStateIncognito();
 	//根据某列排序 查询前itemCount条
 	List<Confession> findConfessionsOrderByItem(int itemCount);
+
+	//搜索结果数量统计
+	int countItemSearch(@Param(value="search") String search);
 
 }

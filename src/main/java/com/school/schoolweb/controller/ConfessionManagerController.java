@@ -20,8 +20,8 @@ public class ConfessionManagerController {
 
 
     @GetMapping("conflist")
-    public String conflist(Integer currentpage,Integer pagesize){
-        PageInfo<ScConfessionJson> pageInfo = schoolConfessionService.findAllConfess(currentpage,pagesize);
+    public String conflist(Integer currentpage,Integer pagesize,String search){
+        PageInfo<ScConfessionJson> pageInfo = schoolConfessionService.findAllConfess(currentpage,pagesize,search);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("total",pageInfo.getTotal());
         jsonObject.put("data",pageInfo.getList());

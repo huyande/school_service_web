@@ -59,11 +59,11 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
 	}
 
 	@Override
-	public PageInfo<ScConfessionJson> findAllConfess(Integer currentpage, Integer pagesize) {
+	public PageInfo<ScConfessionJson> findAllConfess(Integer currentpage, Integer pagesize,String search) {
 		int page = currentpage==null?1:currentpage;
 		int pageSize = pagesize==null?10:pagesize;
 		PageHelper.startPage(page,pageSize);
-		List<Confession> confessionList = confessionMapper.findAllConfess();
+		List<Confession> confessionList = confessionMapper.findAllConfess(search);
 		List<ScConfessionJson> scConfessionJsons = new ArrayList<>();
 		for (Confession conf:confessionList) {
 			ScConfessionJson scConfessionJson = new ScConfessionJson();
@@ -92,7 +92,7 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
 			scConfessionJson.setImage(imageAddress+conf.getImage());
 			scConfessionJsons.add(scConfessionJson);
 		}
-		int count = confessionMapper.countItem();
+		int count = confessionMapper.countItemSearch(search);
 		PageInfo<ScConfessionJson> pageInfo = new PageInfo<>();
 		pageInfo.setList(scConfessionJsons);
 		pageInfo.setTotal(count);

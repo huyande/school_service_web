@@ -30,12 +30,27 @@
     <select id="findAllConfess" resultMap="BaseResultMap">
         select 
         <include refid="Base_Column_List" />
-        from confession ORDER BY time DESC
+        from confession
+         <where>
+        	<if test="search!=null and search!=''">
+        		touser like concat('%',#{search,jdbcType=VARCHAR},'%')
+        	</if>
+        </where>
+         ORDER BY time DESC
     </select>
 
     <!-- 查询总数 -->
     <select id="countItem" resultType="java.lang.Integer"  >
-        select count(1) from confession 
+        select count(1) from confession
+    </select>
+    
+    <select id="countItemSearch" resultType="java.lang.Integer"  >
+        select count(1) from confession
+        <where>
+        	<if test="search!=null and search!=''">
+        		touser like concat('%',#{search,jdbcType=VARCHAR},'%')
+        	</if>
+        </where> 
     </select>
     
     <!-- 统计男女信息比例 -->
