@@ -44,6 +44,13 @@ public interface SchoolConfessionService {
 	 * @return
 	 */
 	List<ScConfessionJson> findConfessionsOrderByItem(int itemCount);
+	
+	/**
+	 * 改变表白信息显示状态
+	 * @param confid
+	 * @return
+	 */
+	String changeConfessionStatus(String confid,int stutas);
 
 	
 }

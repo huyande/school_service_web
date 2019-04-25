@@ -2,8 +2,10 @@ package com.school.schoolweb.service;
 
 import java.util.List;
 
+import com.github.pagehelper.PageInfo;
 import com.school.schoolweb.bean.Roast;
 import com.school.schoolweb.bean.ana.RoastJSON;
+import com.school.schoolweb.bean.ana.ScRoastJson;
 
 /**
  * 吐槽 service
@@ -46,4 +48,13 @@ public interface RoastService {
 	 * @return
 	 */
 	List<RoastJSON> findConfessionsOrderByItem(int itemCount);
+
+	/**
+	 * 分页查询所有的吐槽信息
+	 * @param currentpage
+	 * @param pagesize
+	 * @param search
+	 * @return
+	 */
+	String findAllRoast();
 }

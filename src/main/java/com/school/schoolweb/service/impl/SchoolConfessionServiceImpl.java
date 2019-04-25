@@ -185,4 +185,12 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
 		return scConfessionJsons;
 	}
 
+	@Override
+	public String changeConfessionStatus(String confid,int stutas) {
+		int num = confessionMapper.changeConfessionStatus(confid,stutas);
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", num==0?false:true);
+		return JacksonUtil.toJSon(jsonObj);
+	}
+
 }

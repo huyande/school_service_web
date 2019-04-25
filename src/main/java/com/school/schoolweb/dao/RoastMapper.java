@@ -22,4 +22,11 @@ public interface RoastMapper {
 	int countItem();
 
 	List<Roast> findConfessionsOrderByItem(int itemCount);
+
+	/**
+	 * 根据搜索内容  查询吐槽信息
+	 * @param search
+	 * @return
+	 */
+	List<Roast> findAllRoast();
 }

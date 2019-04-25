@@ -34,4 +34,7 @@ public interface ConfessionMapper {
 	//搜索结果数量统计
 	int countItemSearch(@Param(value="search") String search);
 
+	//修改表白信息状态
+	int changeConfessionStatus(@Param(value="confid")String confid,@Param(value="stutas") int stutas);
+
 }

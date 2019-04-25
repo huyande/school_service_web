@@ -121,4 +121,11 @@
             openid = #{openid,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
+    
+    <update id="changeConfessionStatus" parameterType="com.school.schoolweb.bean.Confession" >
+        update confession
+        set state = #{stutas,jdbcType=LONGVARCHAR}
+        where id = #{confid,jdbcType=VARCHAR}
+    </update>
+    
 </mapper>

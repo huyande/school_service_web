@@ -31,6 +31,17 @@
     </select>
     
     <!-- 查询我的所有 -->
+    <select id="findAllRoast" resultMap="BaseResultMap"  >
+		select 
+	       <include refid="Base_Column_List" />
+	    from roast
+	    ORDER BY createtime DESC
+
+    </select>
+    
+    
+    
+    <!-- 查询我的所有 -->
     <select id="countItem" resultType="java.lang.Integer" >
         select count(1) from roast 
     </select>
