@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <#assign ctx=request.contextPath />
 <html>
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,223 +14,109 @@
 		<link href="${ctx}/css/bootstrap-reset.css" rel="stylesheet">
 		<!--external css-->
 		<link href="${ctx}/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-
-		<!--dynamic table-->
-		<link href="${ctx}/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
-		<link href="${ctx}/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
-		<link rel="stylesheet" href="${ctx}/assets/data-tables/DT_bootstrap.css" />
+		<link href="${ctx}/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+		<link rel="stylesheet" href="${ctx}/css/owl.carousel.css" type="text/css">
 		<!--right slidebar-->
 		<link href="${ctx}/css/slidebars.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
 		<link href="${ctx}/css/style.css" rel="stylesheet">
-		<link href="${ctx}/css/style-responsive.css" rel="stylesheet" />  
+		<link href="${ctx}/css/mystyle.css" rel="stylesheet">
+		<link href="${ctx}/css/style-responsive.css" rel="stylesheet" />
+		
+		<!--dynamic table-->
+		<link href="${ctx}/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+		<link href="${ctx}/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${ctx}/assets/data-tables/DT_bootstrap.css" />
 	</head>
 
 	<body>
-
-		<section id="container">
-			<!--header start-->
-			<header class="header white-bg">
-				<div class="sidebar-toggle-box">
-					<div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-				</div>
-				<!--logo start-->
-				<a href="index.html" class="logo">校园<span>表白墙</span></a>
-				<!--logo end-->
-
-				<div class="top-nav ">
-					<ul class="nav pull-right top-menu">
-						<!-- user login dropdown start-->
-						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<img alt="" src="/img/avatar1_small.jpg">
-								<span class="username">Jhon Doue</span>
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu extended logout">
-								<div class="log-arrow-up"></div>
-								<li>
-									<a href="login.html"><i class="fa fa-key"></i> Log Out</a>
-								</li>
-							</ul>
-						</li>
-						<!-- user login dropdown end -->
-					</ul>
-				</div>
-			</header>
-			<!--header end-->
-
-			<!--sidebar start-->
-			<aside>
-				<div id="sidebar" class="nav-collapse ">
-					<!-- sidebar menu start-->
-					<ul class="sidebar-menu" id="nav-accordion">
-						<li>
-							<a href="/admin/index">
-								<i class="fa fa-dashboard"></i>
-								<span>概览</span>
-							</a>
-						</li>
-
-						<li class="sub-menu">
-							<a href="javascript:;" class="active">
-								<i class="fa fa-laptop"></i>
-								<span>用户管理</span>
-							</a>
-							<ul class="sub">
-								<li class="active">
-									<a href="/admin/user/userManager">用户列表</a>
-								</li>
-								<!-- <li>
-									<a href="#">黑名单</a>
-								</li> -->
-							</ul>
-						</li>
-
-						<li class="sub-menu">
-							<a href="javascript:;">
-								<i class="fa fa-book"></i>
-								<span>UI 组件</span>
-							</a>
-							<ul class="sub">
-								<li>
-									<a href="general.html">一般组件</a>
-								</li>
-								<li>
-									<a href="buttons.html">按钮</a>
-								</li>
-								<li>
-									<a href="modal.html">弹窗</a>
-								</li>
-								<li>
-									<a href="toastr.html">弹窗自动消失</a>
-								</li>
-								<li>
-									<a href="widget.html">小部件</a>
-								</li>
-								<li>
-									<a href="slider.html">滑块</a>
-								</li>
-								<li>
-									<a href="nestable.html">可拖拽树结构</a>
-								</li>
-								<li>
-									<a href="tree.html">树菜单</a>
-								</li>
-								<li>
-									<a href="font_awesome.html">图标</a>
-								</li>
-							</ul>
-						</li>
-
-					</ul>
-					<!-- sidebar menu end-->
-				</div>
-			</aside>
-			<!--sidebar end-->
-
-			<!--main content start-->
-			<section id="main-content">
-				<section class="wrapper">
-					              <!-- page start-->
-              <div id="morris">
-					<div class="row">
-                      <div class="col-lg-4">
-                      	<section class="panel">
-                      		<header class="panel-heading">
-                                	 <h2>用户新增数</h2>
-                            </header>
-                            <div class="panel-body">
-	                      		<div class="col-lg-12" style="height:305px";>
-	                      			<span class="my_span_user"> 
-	                      				${increaseCount}
-	                      			</span>
-	                     		 </div>
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+          <!-- page start-->
+          <div id="morris">
+				<div class="row">
+                  <div class="col-lg-4">
+                  	<section class="panel">
+                  		<header class="panel-heading">
+                            	 <h2>用户新增数</h2>
+                        </header>
+                        <div class="panel-body">
+                      		<div class="col-lg-12" style="height:305px";>
+                      			<span class="my_span_user"> 
+                      				${increaseCount} 
+                      			</span>
                      		 </div>
-                     	</section>
-                      </div>
-                      
-                      <div class="col-lg-4">
-                      	<section class="panel">
-                      		<header class="panel-heading">
-                                	<h2>用户总数</h2>
-                            </header>
-                            <div class="panel-body">
-	                     		 <div class="col-lg-12" style="height:305px";>
-	                     		 	<span class="my_span_user_count"> 
-	                      				${currentCount}
-	                      			</span>
-	                     		 </div>
-                     		 </div>
-                     	</section>
-                      </div>
-                      
-                      <div class="col-lg-4">
-                          <section class="panel">
-                              <header class="panel-heading">
-                                	  男女性别比例
-                              </header>
-                              <div class="panel-body">
-                                  <div id="hero-donut" class="graph"></div>
-                              </div>
-                          </section>
-                      </div>
+                 		 </div>
+                 	</section>
                   </div>
-					
-				</div>
-	
-					
-					<!-- page start-->
-					<div class="row">
-						<div class="col-sm-12">
-							<section class="panel">
-								<header class="panel-heading">
-									用户信息
-									<!--<span class="tools pull-right">
-										<a href="javascript:;" class="fa fa-chevron-down"></a>
-										<a href="javascript:;" class="fa fa-times"></a>
-									</span>-->
-								</header>
-								<div class="panel-body">
-									<div class="adv-table">
-										<table class="display table table-bordered" id="hidden-table-info">
-											<thead>
-												<tr>
-													<th>用户头像</th>
-													<th>用户昵称</th>
-													<th class="hidden-phone">性别</th>
-													<th class="hidden-phone">城市</th>
-													<th class="hidden-phone">注册时间</th>
-												</tr>
-											</thead>
-											<tbody>
-												
-											</tbody>
-										</table>
+                  
+                  <div class="col-lg-4">
+                  	<section class="panel">
+                  		<header class="panel-heading">
+                            	<h2>用户总数</h2>
+                        </header>
+                        <div class="panel-body">
+                     		 <div class="col-lg-12" style="height:305px";>
+                     		 	<span class="my_span_user_count"> 
+                      				${currentCount}
+                      			</span>
+                     		 </div>
+                 		 </div>
+                 	</section>
+                  </div>
+                  
+                  <div class="col-lg-4">
+                      <section class="panel">
+                          <header class="panel-heading">
+                            	  男女性别比例
+                          </header>
+                          <div class="panel-body">
+                              <div id="hero-donut" class="graph"></div>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+			</div>
 
-									</div>
-								</div>
-							</section>
+			<!-- page start-->
+			<div class="row">
+				<div class="col-sm-12">
+					<section class="panel">
+						<header class="panel-heading">
+							用户信息
+							<!--<span class="tools pull-right">
+								<a href="javascript:;" class="fa fa-chevron-down"></a>
+								<a href="javascript:;" class="fa fa-times"></a>
+							</span>-->
+						</header>
+						<div class="panel-body">
+							<div class="adv-table">
+								<table class="display table table-bordered" id="hidden-table-info">
+									<thead>
+										<tr>
+											<th>用户头像</th>
+											<th>用户昵称</th>
+											<th class="hidden-phone">性别</th>
+											<th class="hidden-phone">城市</th>
+											<th class="hidden-phone">注册时间</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+
+							</div>
 						</div>
-					</div>
-
-					<!-- page end-->
-				</section>
-			</section>
-			<!--main content end-->
-
-			<!--footer start-->
-			<footer class="site-footer" >
-				<div class="text-center">
-					2019 &copy; By Huyande.
-					<a href="#" class="go-top">
-						<i class="fa fa-angle-up"></i>
-					</a>
+					</section>
 				</div>
-			</footer>
-			<!--footer end-->
+			</div>
+			<!-- page end-->
+			</section>
 		</section>
-		<!-- js placed at the end of the document so the pages load faster -->
+		<!--main content end-->
+
 
 		<script src="${ctx}/js/jquery.js"></script>
 		<script src="${ctx}/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -245,20 +130,13 @@
 		<script src="${ctx}/assets/morris.js-0.4.3/raphael-min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="${ctx}/assets/data-tables/DT_bootstrap.js"></script>
 		<script src="${ctx}/js/respond.min.js"></script>
-
 		<!--right slidebar-->
 		<script src="${ctx}/js/slidebars.min.js"></script>
-
 		<!--用户管理表格-->
 		<script src="${ctx}/js/schusermanager_table_init.js"></script>
-
-
 		<!--common script for all pages-->
 		<script src="${ctx}/js/common-scripts.js"></script>
-		
 		<!-- 创建图表的js -->
-   		 <script src="${ctx}/js/schusermanger_morris-script.js"></script>
-		
+		<script src="${ctx}/js/schusermanger_morris-script.js"></script>
 	</body>
-
 </html>

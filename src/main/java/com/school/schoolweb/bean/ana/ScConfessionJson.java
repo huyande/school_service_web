@@ -30,6 +30,9 @@ public class ScConfessionJson {
 	
 	//统计的数量
 	private int numCount;
+	
+	//状态 
+	private int state;
 
 	public String getId() {
 		return id;
@@ -92,4 +95,13 @@ public class ScConfessionJson {
 	public void setNumCount(int numCount) {
 		this.numCount = numCount;
 	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+	
 }

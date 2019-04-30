@@ -13,7 +13,7 @@ import java.io.IOException;
  * @create: 2019-03-05 21:21
  **/
 
-@Component
+@Component //加此注解 将Java bean 注入到spring容器中
 public class CorsFilter implements Filter {
 
     /*跨域请求配置*/

@@ -2,6 +2,8 @@ package com.school.schoolweb.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.github.pagehelper.PageInfo;
 import com.school.schoolweb.bean.Confession;
 import com.school.schoolweb.bean.SchoolImage;
@@ -51,6 +53,12 @@ public interface SchoolConfessionService {
 	 * @return
 	 */
 	String changeConfessionStatus(String confid,int stutas);
+
+	/**
+	 * 设置model的数据 
+	 * @param model
+	 */
+	void statisticalConfCountAndNewCount(Model model);
 
 	
 }

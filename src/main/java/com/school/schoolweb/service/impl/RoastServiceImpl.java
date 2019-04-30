@@ -17,6 +17,7 @@ import com.school.schoolweb.bean.Wxuserinfo;
 import com.school.schoolweb.bean.ana.RoastJSON;
 import com.school.schoolweb.bean.ana.ScRoastJson;
 import com.school.schoolweb.bean.ana.User;
+import com.school.schoolweb.bean.otherbean.SexCount;
 import com.school.schoolweb.dao.CountInfoMapper;
 import com.school.schoolweb.dao.LikeRoastMapper;
 import com.school.schoolweb.dao.MessageRoastMapper;
@@ -160,6 +161,32 @@ public class RoastServiceImpl implements RoastService {
 		map.put("total", total);
         //jsonObject.put("data",map);
 		return JacksonUtil.toJSon(map);
+	}
+
+	@Override
+	public String statisticalRoastCountSex() {
+		List<SexCount> sexCounts=roastMapper.statisticalRoastCountSex();
+		Map<String,Integer> map = new HashMap<>();
+        for(SexCount sex:sexCounts){
+            if(sex.getSextype()==0){
+                map.put("UNKnow",sex.getSexcount());
+            }else if(sex.getSextype()==1){
+                map.put("man",sex.getSexcount());
+            }else{
+                map.put("woman",sex.getSexcount());
+            }
+        }
+	    JSONObject jsonObject = new JSONObject();
+	    jsonObject.put("data",map);
+	    return JacksonUtil.toJSon(jsonObject);
+	}
+
+	@Override
+	public String changeRoastStatus(int roastId, int stutas) {
+		int num = roastMapper.changeRoastStatus(roastId,stutas);
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("result", num==0?false:true);
+		return JacksonUtil.toJSon(jsonObj);
 	}
 	
 	

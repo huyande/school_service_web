@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.school.schoolweb.bean.Roast;
+import com.school.schoolweb.bean.otherbean.SexCount;
 
 public interface RoastMapper {
     int insert(Roast record);
@@ -29,4 +30,17 @@ public interface RoastMapper {
 	 * @return
 	 */
 	List<Roast> findAllRoast();
+	/**
+	 * 查询男女未知个数
+	 * @return
+	 */
+	List<SexCount> statisticalRoastCountSex();
+
+	/**
+	 * 修改吐槽信息的状态
+	 * @param roastId
+	 * @param stutas
+	 * @return
+	 */
+	int changeRoastStatus(@Param(value = "roastId") int roastId, @Param(value = "stutas")int stutas);
 }

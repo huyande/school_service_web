@@ -57,4 +57,17 @@ public interface RoastService {
 	 * @return
 	 */
 	String findAllRoast();
+	
+	/**
+	 * 统计吐槽信息性别比例
+	 * @return
+	 */
+	String statisticalRoastCountSex();
+	/**
+	 * 修改吐槽信息的状态 
+	 * @param roastId
+	 * @param stutas
+	 * @return
+	 */
+	String changeRoastStatus(int roastId, int stutas);
 }

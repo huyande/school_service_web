@@ -1,5 +1,6 @@
 package com.school.schoolweb.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -35,6 +36,6 @@ public interface ConfessionMapper {
 	int countItemSearch(@Param(value="search") String search);
 
 	//修改表白信息状态
-	int changeConfessionStatus(@Param(value="confid")String confid,@Param(value="stutas") int stutas);
+	int changeConfessionStatus(@Param(value="confid")String confid,@Param(value="time")Date time, @Param(value="stutas") int stutas);
 
 }

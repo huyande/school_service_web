@@ -21,6 +21,7 @@ import com.school.schoolweb.utils.JacksonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.school.schoolweb.bean.Confession;
 import com.school.schoolweb.bean.CountInfo;
@@ -90,6 +91,7 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
 			scConfessionJson.setTime(DateUtil.format(DateUtil.convertStrToDate(conf.getTime()),"yyyy/MM/dd"));
 			//遍历图片数组
 			scConfessionJson.setImage(imageAddress+conf.getImage());
+			scConfessionJson.setState(conf.getState());
 			scConfessionJsons.add(scConfessionJson);
 		}
 		int count = confessionMapper.countItemSearch(search);
@@ -187,10 +189,21 @@ public class SchoolConfessionServiceImpl implements SchoolConfessionService{
 
 	@Override
 	public String changeConfessionStatus(String confid,int stutas) {
-		int num = confessionMapper.changeConfessionStatus(confid,stutas);
+		Confession confession = confessionMapper.selectByPrimaryKey(confid);
+		int num = confessionMapper.changeConfessionStatus(confid,DateUtil.convertStrToDate(confession.getTime()),stutas);
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("result", num==0?false:true);
 		return JacksonUtil.toJSon(jsonObj);
+	}
+
+	@Override
+	public void statisticalConfCountAndNewCount(Model model) {
+		int countItem = confessionMapper.countItem();
+		//2 代表 conf 那列 
+		CountInfo countInfo = countInfoMapper.findbyId(2);
+		int increaseCount=countItem-countInfo.getCount();
+		model.addAttribute("currentCount", countItem);
+		model.addAttribute("increaseCount", increaseCount);
 	}
 
 }

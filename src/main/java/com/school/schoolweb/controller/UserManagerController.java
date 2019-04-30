@@ -101,6 +101,7 @@ public class UserManagerController {
     @GetMapping("usercont")
     @ResponseBody
     public String usercont(){
+    	log.info("获取用户日增量");
         int  count = wxUserInfoService.getUserCount();
         CountInfo dayCount = wxUserInfoService.getUserDayCount();
         JSONObject jsonObject = new JSONObject();

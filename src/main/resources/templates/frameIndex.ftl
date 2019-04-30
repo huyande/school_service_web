@@ -26,43 +26,32 @@
 		<#include "./common/menu.ftl"/>
 
 		<div id="content">
-			<iframe align="center" style="padding: 0px; width: 100%; height: 800px;" src="/admin/user/userManager" frameborder="no"></iframe>				
+			<iframe align="center" style="padding: 0px; width: 100%; height: 800px;" src="/admin/index" frameborder="no"></iframe>				
 		</div>
 		<!--footer start-->
-		<#include "footer.ftl"/>
+		<#include "./common/footer.ftl"/>
 	</section>
 </body>
-<!-- js placed at the end of the document so the pages load faster -->
 
-<script src="${ctx}/js/jquery.js"></script>
-<script src="${ctx}/js/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="${ctx}/js/jquery-migrate-1.2.1.min.js"></script>
+<!--右侧菜单相关 start-->
+<script src="${ctx}/js/jquery.js"></script> 
 <script src="${ctx}/js/bootstrap.min.js"></script>
-<script class="include" type="text/javascript"
-	src="${ctx}/js/jquery.dcjqaccordion.2.7.js"></script>
+<script class="include" type="text/javascript" src="${ctx}/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${ctx}/js/jquery.scrollTo.min.js"></script>
 <script src="${ctx}/js/jquery.nicescroll.js" type="text/javascript"></script>
-<script type="text/javascript" language="javascript"
-	src="${ctx}/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
-<script src="${ctx}/assets/morris.js-0.4.3/morris.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/assets/morris.js-0.4.3/raphael-min.js"
-	type="text/javascript"></script>
-<script type="text/javascript"
-	src="${ctx}/assets/data-tables/DT_bootstrap.js"></script>
-<script src="${ctx}/js/respond.min.js"></script>
-
-<!--right slidebar-->
 <script src="${ctx}/js/slidebars.min.js"></script>
-
-<!--用户管理表格-->
-<script src="${ctx}/js/schusermanager_table_init.js"></script>
-
-
-<!--common script for all pages-->
 <script src="${ctx}/js/common-scripts.js"></script>
+<!-end-->
 
-<!-- 创建图表的js -->
-<script src="${ctx}/js/schusermanger_morris-script.js"></script>
+
+<script>
+$('.ifm_switch_meau').click(function(){
+	$('li .active').removeAttr("class")
+	$(this).parent('li').attr("class","active")
+	//获取到当前点击菜单的data-meau 将此数据设置到 iframes 的src 属性中  
+	$('#content').children('iframe').attr('src',$(this).attr('data-meau'));
+});
+
+</script>
 
 </html>

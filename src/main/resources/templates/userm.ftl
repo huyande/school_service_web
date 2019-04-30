@@ -14,19 +14,22 @@
 		<link href="${ctx}/css/bootstrap.min.css" rel="stylesheet">
 		<link href="${ctx}/css/bootstrap-reset.css" rel="stylesheet">
 		<!--external css-->
-		<link href="${ctx}/assets/font-awesome/css/font-awesome.css"
-			rel="stylesheet" />
-		<link
-			href="${ctx}/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css"
-			rel="stylesheet" type="text/css" media="screen" />
-		<link rel="stylesheet" href="${ctx}/css/owl.carousel.css"
-			type="text/css">
+		<link href="${ctx}/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+		<link href="${ctx}/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+		<link rel="stylesheet" href="${ctx}/css/owl.carousel.css" type="text/css">
 		<!--right slidebar-->
 		<link href="${ctx}/css/slidebars.css" rel="stylesheet">
 		<!-- Custom styles for this template -->
 		<link href="${ctx}/css/style.css" rel="stylesheet">
+		<link href="${ctx}/css/mystyle.css" rel="stylesheet">
 		<link href="${ctx}/css/style-responsive.css" rel="stylesheet" />
-	</head>
+		
+		<!--dynamic table-->
+		<link href="${ctx}/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+		<link href="${ctx}/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+		<link rel="stylesheet" href="${ctx}/assets/data-tables/DT_bootstrap.css" />
+		
+			</head>
 
 	<body>
 			<!--main content start-->
@@ -140,7 +143,7 @@
 		<script src="${ctx}/js/respond.min.js"></script>
 		
 		<!--right slidebar-->
-		<script src="${ctx}/js/slidebars.min.js"></script>
+			<script src="${ctx}/js/slidebars.min.js"></script>
 		
 		<!--用户管理表格-->
 		<script src="${ctx}/js/schusermanager_table_init.js"></script>

@@ -39,8 +39,6 @@
 
     </select>
     
-    
-    
     <!-- 查询我的所有 -->
     <select id="countItem" resultType="java.lang.Integer" >
         select count(1) from roast 
@@ -62,6 +60,17 @@
 		)ld
 		WHERE r.`id`=ld.`roastid` AND ld.`liked`=1
     </select>
+    
+     <!-- 统计男女信息比例 -->
+    <select id="statisticalRoastCountSex" resultType="com.school.schoolweb.bean.otherbean.SexCount"  >
+       SELECT tt.`gender` sextype,  COUNT(1) sexcount FROM (
+			SELECT wx.openid,wx.`gender` FROM roast c
+			LEFT JOIN wxuserinfo wx ON wx.`openid`=c.`openid` 
+			GROUP BY wx.`openid` ,wx.`gender`
+		)tt
+		GROUP BY tt.`gender`
+    </select>
+    
     
     <delete id="deleteByRoastId" parameterType="java.lang.Integer" >
         delete from roast where id = #{roastid,jdbcType=INTEGER}
@@ -115,4 +124,11 @@
             </if>
         </trim>
     </insert>
+    
+     <update id="changeRoastStatus">
+        update roast
+        set state = #{stutas,jdbcType=LONGVARCHAR}
+        where id = #{roastId,jdbcType=VARCHAR}
+    </update>
+    
 </mapper>

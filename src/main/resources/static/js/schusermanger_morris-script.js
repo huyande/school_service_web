@@ -15,7 +15,7 @@ var Script = function () {
         	          {label: '未知', value: result.data.UNKnow }
         	        ],
         	          colors: ['#41cac0', '#EE6AA7', '#BDBDBD'],
-        	        formatter: function (y) { return y + "%" }
+        	        formatter: function (y) { return Math.round(y/(result.data.woman+result.data.man+result.data.UNKnow)*100) + "%" }
         	      });
             }
     	});

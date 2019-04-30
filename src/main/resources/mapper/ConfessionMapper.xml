@@ -87,9 +87,9 @@
 	    <selectKey  keyProperty="id" resultType="java.lang.String" order="BEFORE">
 	             select uuid()
 	 	</selectKey>
-        insert into confession (id, content,image, openid,touser,fromuser,stateniming)
+        insert into confession (id, content,image,time, openid,touser,fromuser,stateniming)
         values (#{id,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, 
-             #{image,jdbcType=LONGVARCHAR}, #{openid,jdbcType=VARCHAR},#{touser,jdbcType=VARCHAR},#{fromuser,jdbcType=VARCHAR},#{stateniming,jdbcType=INTEGER})
+             #{image,jdbcType=LONGVARCHAR},NOW(), #{openid,jdbcType=VARCHAR},#{touser,jdbcType=VARCHAR},#{fromuser,jdbcType=VARCHAR},#{stateniming,jdbcType=INTEGER})
     </insert>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.school.schoolweb.bean.Confession" >
@@ -116,15 +116,15 @@
         update confession
         set content = #{content,jdbcType=LONGVARCHAR},
             time = #{time,jdbcType=TIMESTAMP},
-          
             image = #{image,jdbcType=LONGVARCHAR},
             openid = #{openid,jdbcType=VARCHAR}
         where id = #{id,jdbcType=VARCHAR}
     </update>
     
-    <update id="changeConfessionStatus" parameterType="com.school.schoolweb.bean.Confession" >
+    <update id="changeConfessionStatus">
         update confession
-        set state = #{stutas,jdbcType=LONGVARCHAR}
+        set state = #{stutas,jdbcType=INTEGER},
+        time = #{time,jdbcType=VARCHAR}
         where id = #{confid,jdbcType=VARCHAR}
     </update>
     
