@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
@@ -147,7 +148,7 @@ public class RoastServiceImpl implements RoastService {
 			//设置内容
 			roastJson.setContent(roast.getContent());
 			//设置发布时间
-			roastJson.setCreatetime(roast.getCreatetime());
+			roastJson.setCreatetime(DateUtil.format(DateUtil.convertStrToDate(roast.getCreatetime()),"yyyy/MM/dd"));
 			//设置吐槽主键信息
 			roastJson.setId(roast.getId());
 			//设置吐槽状态
@@ -187,6 +188,41 @@ public class RoastServiceImpl implements RoastService {
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("result", num==0?false:true);
 		return JacksonUtil.toJSon(jsonObj);
+	}
+
+	@Override
+	public void roastNewAndIncCount(Model model) {
+		int countItem = roastMapper.countItem();
+		//2 代表 conf 那列 
+		CountInfo countInfo = countInfoMapper.findbyId(3);
+		int increaseCount=countItem-countInfo.getCount();
+		model.addAttribute("currentCount", countItem);
+		model.addAttribute("increaseCount", increaseCount);
+	}
+
+	@Override
+	public PageInfo<ScRoastJson> findAllRoastList(Integer currentpage, Integer pagesize, String search) {
+		int page = currentpage==null?1:currentpage;
+		int pageSize = pagesize==null?10:pagesize;
+		PageHelper.startPage(page,pageSize);
+		List<Roast> roastlist = roastMapper.findAllRoastList(search);
+		List<ScRoastJson> scRoastJsons = new ArrayList<ScRoastJson>();
+		for(Roast roast :roastlist) {
+			ScRoastJson roastJson = new ScRoastJson();
+			roastJson.setId(roast.getId());
+			roastJson.setContent(roast.getContent());
+			roastJson.setState(roast.getState());
+			roastJson.setCreatetime(DateUtil.format(DateUtil.convertStrToDate(roast.getCreatetime()),"yyyy/MM/dd"));
+			//查询吐槽用户
+			Wxuserinfo wxuserinfo = wxuserinfoMapper.findByOpenId(roast.getOpenid());
+			roastJson.setUser(wxuserinfo);
+			scRoastJsons.add(roastJson);
+		}
+		int count = roastMapper.countItemSearch(search);
+		PageInfo<ScRoastJson> pageInfo = new PageInfo<ScRoastJson>();
+		pageInfo.setList(scRoastJsons);
+		pageInfo.setTotal(count);
+		return pageInfo;
 	}
 	
 	

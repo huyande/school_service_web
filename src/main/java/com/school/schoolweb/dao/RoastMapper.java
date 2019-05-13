@@ -43,4 +43,8 @@ public interface RoastMapper {
 	 * @return
 	 */
 	int changeRoastStatus(@Param(value = "roastId") int roastId, @Param(value = "stutas")int stutas);
+
+	List<Roast> findAllRoastList(@Param(value = "search")  String search);
+
+	int countItemSearch(@Param(value = "search") String search);
 }

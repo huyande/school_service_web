@@ -72,6 +72,29 @@
     </select>
     
     
+     <!-- 分页查询-->
+    <select id="findAllRoastList" resultMap="BaseResultMap"  >
+       select 
+        <include refid="Base_Column_List" />
+        from roast
+         <where>
+        	<if test="search!=null and search!=''">
+        		content like concat('%',#{search,jdbcType=VARCHAR},'%')
+        	</if>
+        </where>
+         ORDER BY createtime DESC
+    </select>
+    
+    <select id="countItemSearch" resultType="java.lang.Integer"  >
+        select count(1) from roast
+        <where>
+        	<if test="search!=null and search!=''">
+        		content like concat('%',#{search,jdbcType=VARCHAR},'%')
+        	</if>
+        </where> 
+    </select>
+    
+    
     <delete id="deleteByRoastId" parameterType="java.lang.Integer" >
         delete from roast where id = #{roastid,jdbcType=INTEGER}
     </delete>

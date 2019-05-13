@@ -2,6 +2,8 @@ package com.school.schoolweb.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
+
 import com.github.pagehelper.PageInfo;
 import com.school.schoolweb.bean.Roast;
 import com.school.schoolweb.bean.ana.RoastJSON;
@@ -70,4 +72,19 @@ public interface RoastService {
 	 * @return
 	 */
 	String changeRoastStatus(int roastId, int stutas);
+	
+	/**
+	 * 查询新增数和总数吐槽 封装到 model 里 
+	 * @param model
+	 */
+	void roastNewAndIncCount(Model model);
+
+	/**
+	 * 分页查询吐槽信息
+	 * @param currentpage
+	 * @param pagesize
+	 * @param search
+	 * @return
+	 */
+	PageInfo<ScRoastJson> findAllRoastList(Integer currentpage, Integer pagesize, String search);
 }

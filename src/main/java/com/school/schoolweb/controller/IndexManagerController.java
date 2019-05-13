@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.school.schoolweb.bean.Confession;
@@ -23,6 +24,20 @@ public class IndexManagerController {
 	
 	@Autowired
 	private RoastService roastService;
+	
+	/** 
+	 * 跳转到后台主页
+    * @author hyd
+    * @Description: 
+    * @date 2019年4月11日 上午10:22:08
+    * @return
+     */
+    
+    @GetMapping("/frameIndex")
+    public String template() {
+    	return "frameIndex";
+    }
+	
 
 	@RequestMapping("index")
 	public String indexView(Model model){

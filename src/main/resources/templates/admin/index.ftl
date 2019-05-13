@@ -26,107 +26,6 @@
 
 	<body>
 
-		<section id="container">
-			<!--header start-->
-			<header class="header white-bg">
-				<div class="sidebar-toggle-box">
-					<div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-				</div>
-				<!--logo start-->
-				<a href="index.html" class="logo">校园<span>表白墙</span></a>
-				<!--logo end-->
-
-				<div class="top-nav ">
-					<ul class="nav pull-right top-menu">
-						<!-- user login dropdown start-->
-						<li class="dropdown">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<img alt="" src="${ctx}/img/avatar1_small.jpg">
-								<span class="username">Jhon Doue</span>
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu extended logout">
-								<div class="log-arrow-up"></div>
-								<li>
-									<a href="login.html"><i class="fa fa-key"></i> Log Out</a>
-								</li>
-							</ul>
-						</li>
-						<!-- user login dropdown end -->
-					</ul>
-				</div>
-			</header>
-			<!--header end-->
-
-			<!--sidebar start-->
-			<aside>
-				<div id="sidebar" class="nav-collapse ">
-					<!-- sidebar menu start-->
-					<ul class="sidebar-menu" id="nav-accordion">
-						<li>
-							<a class="active" href="/admin/index">
-								<i class="fa fa-dashboard"></i>
-								<span>概览</span>
-							</a>
-						</li>
-
-						<li class="sub-menu">
-							<a href="javascript:;">
-								<i class="fa fa-laptop"></i>
-								<span>用户管理</span>
-							</a>
-							<ul class="sub">
-								<li>
-									<a href="/admin/user/userManager">用户列表</a>
-								</li>
-								<!-- <li>
-									<a href="#">黑名单</a>
-								</li> -->
-							</ul>
-						</li>
-
-						<li class="sub-menu">
-							<a href="javascript:;">
-								<i class="fa fa-book"></i>
-								<span>表白墙信息</span>
-							</a>
-							<ul class="sub">
-								<li>
-									<a href="general.html">一般组件</a>
-								</li>
-								<li>
-									<a href="buttons.html">按钮</a>
-								</li>
-								<li>
-									<a href="modal.html">弹窗</a>
-								</li>
-								<li>
-									<a href="toastr.html">弹窗自动消失</a>
-								</li>
-								<li>
-									<a href="widget.html">小部件</a>
-								</li>
-								<li>
-									<a href="slider.html">滑块</a>
-								</li>
-								<li>
-									<a href="nestable.html">可拖拽树结构</a>
-								</li>
-								<li>
-									<a href="tree.html">树菜单</a>
-								</li>
-								<li>
-									<a href="font_awesome.html">图标</a>
-								</li>
-							</ul>
-						</li>
-
-					</ul>
-					<!-- sidebar menu end-->
-				</div>
-			</aside>
-			<!--sidebar end-->
-
 			<!--main content start-->
 			<section id="main-content">
 				<section class="wrapper">
@@ -235,71 +134,13 @@
 										<div class="value tooltips" data-original-title="点赞数：${item.numCount} 内容:${item.content}" data-toggle="tooltip" data-placement="top">${item.numCount}%</div>
 									</div>
 								</#list>  
-								
-								<!-- <div class="bar ">
-									<div class="title">FEB</div>
-									<div class="value tooltips" data-original-title="50%" data-toggle="tooltip" data-placement="top">50%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">MAR</div>
-									<div class="value tooltips" data-original-title="40%" data-toggle="tooltip" data-placement="top">40%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">APR</div>
-									<div class="value tooltips" data-original-title="55%" data-toggle="tooltip" data-placement="top">55%</div>
-								</div>
-								<div class="bar">
-									<div class="title">MAY</div>
-									<div class="value tooltips" data-original-title="20%" data-toggle="tooltip" data-placement="top">20%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">JUN</div>
-									<div class="value tooltips" data-original-title="39%" data-toggle="tooltip" data-placement="top">39%</div>
-								</div>
-								<div class="bar">
-									<div class="title">JUL</div>
-									<div class="value tooltips" data-original-title="75%" data-toggle="tooltip" data-placement="top">75%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">AUG</div>
-									<div class="value tooltips" data-original-title="45%" data-toggle="tooltip" data-placement="top">45%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">SEP</div>
-									<div class="value tooltips" data-original-title="50%" data-toggle="tooltip" data-placement="top">50%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">OCT</div>
-									<div class="value tooltips" data-original-title="42%" data-toggle="tooltip" data-placement="top">42%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">NOV</div>
-									<div class="value tooltips" data-original-title="60%" data-toggle="tooltip" data-placement="top">60%</div>
-								</div>
-								<div class="bar ">
-									<div class="title">DEC</div>
-									<div class="value tooltips" data-original-title="90%" data-toggle="tooltip" data-placement="top">90%</div>
-								</div> -->
 							</div>
 							<!--custom chart end-->
 						</div>
 					</div>
 				</section>
 				</section>
-				<!--main content end-->
 				
-				<!--footer start-->
-				<footer class="site-footer" style="margin-top: 80px;">
-					<div class="text-center" >
-						2019 &copy; By Huyande.
-						<a href="#" class="go-top">
-							<i class="fa fa-angle-up"></i>
-						</a>
-					</div>
-				</footer>
-				<!--footer end-->
-			</section>
-
 			<!-- js placed at the end of the document so the pages load faster -->
 			<script src="${ctx}/js/jquery.js"></script>
 			<script src="${ctx}/js/bootstrap.min.js"></script>

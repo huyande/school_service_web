@@ -35,6 +35,18 @@
 					</li>
 				</ul>
 			</li>
+			
+			<li class="sub-menu">
+				<a href="javascript:;">
+					<i class="fa fa-book"></i>
+					<span >吐槽管理</span>
+				</a>
+				<ul class="sub">
+					<li >
+						<a class="ifm_switch_meau" data-meau="/admin/roast/roastManager" href="javascript:;">吐槽信息</a>
+					</li>
+				</ul>
+			</li>
 
 		</ul>
 		<!-- sidebar menu end-->
